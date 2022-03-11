@@ -7,7 +7,7 @@
 
 import Foundation
 
-class MovieResponse:Codable{
+class FilmCevap:Codable{
     
     var filmler:[Filmler]?
 }

@@ -9,7 +9,7 @@ import UIKit
 
 class CategoryTableViewCell: UITableViewCell {
 
-    //MARK: sss
+    //MARK: IBOutlets
     @IBOutlet weak var categoryNameLabel: UILabel!
     
     

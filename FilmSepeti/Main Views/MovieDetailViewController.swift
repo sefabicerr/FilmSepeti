@@ -9,26 +9,36 @@ import UIKit
 
 class MovieDetailViewController: UIViewController {
 
+    //MARK: IBOutlets
     @IBOutlet weak var movieImageView: UIImageView!
     @IBOutlet weak var movieNameLabel: UILabel!
     @IBOutlet weak var yearLabel: UILabel!
     @IBOutlet weak var categoryLabel: UILabel!
     @IBOutlet weak var directorLabel: UILabel!
+    
+    //MARK: Vars
+    var movie: Filmler?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+
+        if let f = movie {
+            
+            if let url = URL(string: "\(kIMAGELINK)\(f.film_resim!)"){
+                DispatchQueue.global().async {
+                    let data = try? Data(contentsOf: url)
+                    
+                    DispatchQueue.main.async {
+                        self.movieImageView.image = UIImage(data: data!)
+                    }
+                }
+            }
+            
+            movieNameLabel.text = f.film_ad
+            yearLabel.text = f.film_yil
+            categoryLabel.text = f.kategori?.kategori_ad
+            directorLabel.text = f.yonetmen?.yonetmen_ad
+        }
     }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }
